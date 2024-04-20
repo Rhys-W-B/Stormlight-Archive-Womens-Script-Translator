@@ -1,1 +1,2 @@
 "# Stormlight-Archives-Womens-Script-Translator" 
+a short project I decided to do after reading Brandon Sanderson's Stormlight archive. the fantasy script title Women's script is a phonetic script based on the English language, and I wanted to create a real time translator for this script from scratch.

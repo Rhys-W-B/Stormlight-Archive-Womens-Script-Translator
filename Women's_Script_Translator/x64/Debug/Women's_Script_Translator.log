@@ -1,0 +1,7 @@
+﻿  Main.cpp
+C:\Users\rhys9\source\repos\Women's_Script_Translator\Women's_Script_Translator\Main.cpp(27,40): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\rhys9\source\repos\Women's_Script_Translator\Women's_Script_Translator\Main.cpp(27,40): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\rhys9\source\repos\Women's_Script_Translator\Women's_Script_Translator\Main.cpp(27,58): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\rhys9\source\repos\Women's_Script_Translator\Women's_Script_Translator\Main.cpp(27,58): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\rhys9\source\repos\Women's_Script_Translator\Women's_Script_Translator\Main.cpp(41,20): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  Women's_Script_Translator.vcxproj -> C:\Users\rhys9\source\repos\Women's_Script_Translator\x64\Debug\Women's_Script_Translator.exe

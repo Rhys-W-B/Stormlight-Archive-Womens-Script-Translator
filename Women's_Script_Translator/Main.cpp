@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <stdexcept>
+#include <Windows.h>
 
 #define _SCREENWIDTH 1200
 #define _SCREENHEIGHT 800
@@ -58,7 +59,7 @@ void backSpace(int width, SDL_Renderer* renderer,int x,int y) {
 int main(int argc, char *argv[]) {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	SDL_Window* window = SDL_CreateWindow("Woah a title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _SCREENWIDTH, _SCREENHEIGHT, SDL_WINDOW_OPENGL);
+	SDL_Window* window = SDL_CreateWindow("Women's Script Translator", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _SCREENWIDTH, _SCREENHEIGHT, SDL_WINDOW_OPENGL);
 	if (window == nullptr) {
 		std::cout << "SDL Window could not be created!!!" <<std::endl;
 		exit(0);
@@ -126,6 +127,7 @@ int main(int argc, char *argv[]) {
 	bool compound = false;
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderClear(renderer);
+	std::cout << "welcome to my women's script translator!\ncurrently, this only has very basic text editor support.\nall that means is no mouse or cursor interaction.\nyou can see what you're typing in english below vv\n";
 	
 	while(run){
 		SDL_RenderPresent(renderer);
@@ -180,7 +182,8 @@ int main(int argc, char *argv[]) {
 						y -= 80;
 						xValues.pop_back();
 					}
-					std::cout << "backspaced width: " << widths.at(pos) << std::endl;
+					//std::cout << "backspaced width: " << widths.at(pos) << std::endl;	//comment for build
+					std::cout << "\b \b";
 					x -= widths.at(pos);
 					backSpace(widths.at(pos), renderer, x, y);
 					widths.pop_back();
@@ -190,15 +193,19 @@ int main(int argc, char *argv[]) {
 					xValues.push_back(x);
 					y += 80;
 					x = 0;
+					std::cout << std::endl;												//uncomment for build
 				}
 				//std::cout << event.key.keysym.sym << std::endl;
-				std::cout << "widths vector size: " << widths.size() << std::endl;		//debugging information vvv
-				std::cout << "widths: ";
-				for (int i = 0; i < widths.size(); i++) {
-					std::cout << widths.at(i) << ", ";
+				//std::cout << "widths vector size: " << widths.size() << std::endl;	//debugging information vvv (comment for build)
+				//std::cout << "widths: ";
+				//for (int i = 0; i < widths.size(); i++) {
+				//	std::cout << widths.at(i) << ", ";
+				//}
+				//std::cout << std::endl;
+				//std::cout << "position: " << pos << std::endl;
+				if (event.key.keysym.sym != 8) {
+					std::cout << (char)event.key.keysym.sym;							//uncomment for build
 				}
-				std::cout << std::endl;
-				std::cout << "position: " << pos << std::endl;
 			}
 		}
 	}

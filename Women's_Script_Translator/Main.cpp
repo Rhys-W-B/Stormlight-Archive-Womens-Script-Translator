@@ -152,7 +152,7 @@ int main(int argc, char *argv[]) {
 						svgFile = svgFilesMap[201];
 						prevChar = 201;
 						curchar = 201;
-						compound = false;
+						compound = false;												//git test
 					}
 					if (compound && event.key.keysym.sym == 104 && prevChar == 115) {	//SH compound character
 						pos--;

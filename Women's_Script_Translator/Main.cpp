@@ -8,8 +8,6 @@
 #include <stdexcept>
 #include <Windows.h>
 
-#define _SCREENWIDTH 1200
-#define _SCREENHEIGHT 800
 void renderSVG(const std::string& filename, SDL_Renderer* renderer,int x,int y, float scale) {
 	SDL_Surface* surface = IMG_Load(filename.c_str());
 	if (!surface) {
@@ -47,7 +45,7 @@ void backSpace(int width, SDL_Renderer* renderer,int x,int y) {
 	rect.x = x;
 	rect.y = y;
 	rect.w = width;
-	rect.h = 100;
+	rect.h = 80;
 
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
@@ -58,6 +56,10 @@ void backSpace(int width, SDL_Renderer* renderer,int x,int y) {
 
 int main(int argc, char *argv[]) {
 	SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_DisplayMode DM;
+	SDL_GetCurrentDisplayMode(0, &DM);
+	auto _SCREENWIDTH = DM.w/2;
+	auto _SCREENHEIGHT = DM.h/2;
 
 	SDL_Window* window = SDL_CreateWindow("Women's Script Translator", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _SCREENWIDTH, _SCREENHEIGHT, SDL_WINDOW_OPENGL);
 	if (window == nullptr) {
@@ -194,6 +196,12 @@ int main(int argc, char *argv[]) {
 					y += 80;
 					x = 0;
 					std::cout << std::endl;												//uncomment for build
+				}
+				if (event.key.keysym.sym == 32) {
+					backSpace(10, renderer, x, y);
+					pos++;
+					x += 10;														//FIX THIS
+					widths.push_back(10);
 				}
 				//std::cout << event.key.keysym.sym << std::endl;
 				//std::cout << "widths vector size: " << widths.size() << std::endl;	//debugging information vvv (comment for build)

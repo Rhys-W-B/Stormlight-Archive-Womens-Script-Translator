@@ -8,8 +8,6 @@
 #include <stdexcept>
 #include <Windows.h>
 
-#define _SCREENWIDTH 1200
-#define _SCREENHEIGHT 800
 void renderSVG(const std::string& filename, SDL_Renderer* renderer,int x,int y, float scale) {
 	SDL_Surface* surface = IMG_Load(filename.c_str());
 	if (!surface) {
@@ -58,6 +56,10 @@ void backSpace(int width, SDL_Renderer* renderer,int x,int y) {
 
 int main(int argc, char *argv[]) {
 	SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_DisplayMode DM;
+	SDL_GetCurrentDisplayMode(0, &DM);
+	auto _SCREENWIDTH = DM.w/2;
+	auto _SCREENHEIGHT = DM.h/2;
 
 	SDL_Window* window = SDL_CreateWindow("Women's Script Translator", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _SCREENWIDTH, _SCREENHEIGHT, SDL_WINDOW_OPENGL);
 	if (window == nullptr) {
@@ -182,7 +184,7 @@ int main(int argc, char *argv[]) {
 						y -= 80;
 						xValues.pop_back();
 					}
-					std::cout << "backspaced width: " << widths.at(pos) << std::endl;	//comment for build
+					//std::cout << "backspaced width: " << widths.at(pos) << std::endl;	//comment for build
 					std::cout << "\b \b";
 					x -= widths.at(pos);
 					backSpace(widths.at(pos), renderer, x, y);
@@ -201,17 +203,17 @@ int main(int argc, char *argv[]) {
 					x += 10;														//FIX THIS
 					widths.push_back(10);
 				}
-				std::cout << event.key.keysym.sym << std::endl;
-				std::cout << "widths vector size: " << widths.size() << std::endl;	//debugging information vvv (comment for build)
-				std::cout << "widths: ";
-				for (int i = 0; i < widths.size(); i++) {
-					std::cout << widths.at(i) << ", ";
-				}
-				std::cout << std::endl;
-				std::cout << "position: " << pos << std::endl;
-				//if (event.key.keysym.sym != 8) {
-				//	std::cout << (char)event.key.keysym.sym;							//uncomment for build
+				//std::cout << event.key.keysym.sym << std::endl;
+				//std::cout << "widths vector size: " << widths.size() << std::endl;	//debugging information vvv (comment for build)
+				//std::cout << "widths: ";
+				//for (int i = 0; i < widths.size(); i++) {
+				//	std::cout << widths.at(i) << ", ";
 				//}
+				//std::cout << std::endl;
+				//std::cout << "position: " << pos << std::endl;
+				if (event.key.keysym.sym != 8) {
+					std::cout << (char)event.key.keysym.sym;							//uncomment for build
+				}
 			}
 		}
 	}

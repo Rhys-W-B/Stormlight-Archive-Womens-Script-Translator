@@ -47,7 +47,7 @@ void backSpace(int width, SDL_Renderer* renderer,int x,int y) {
 	rect.x = x;
 	rect.y = y;
 	rect.w = width;
-	rect.h = 100;
+	rect.h = 80;
 
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
@@ -182,7 +182,7 @@ int main(int argc, char *argv[]) {
 						y -= 80;
 						xValues.pop_back();
 					}
-					//std::cout << "backspaced width: " << widths.at(pos) << std::endl;	//comment for build
+					std::cout << "backspaced width: " << widths.at(pos) << std::endl;	//comment for build
 					std::cout << "\b \b";
 					x -= widths.at(pos);
 					backSpace(widths.at(pos), renderer, x, y);
@@ -195,17 +195,23 @@ int main(int argc, char *argv[]) {
 					x = 0;
 					std::cout << std::endl;												//uncomment for build
 				}
-				//std::cout << event.key.keysym.sym << std::endl;
-				//std::cout << "widths vector size: " << widths.size() << std::endl;	//debugging information vvv (comment for build)
-				//std::cout << "widths: ";
-				//for (int i = 0; i < widths.size(); i++) {
-				//	std::cout << widths.at(i) << ", ";
-				//}
-				//std::cout << std::endl;
-				//std::cout << "position: " << pos << std::endl;
-				if (event.key.keysym.sym != 8) {
-					std::cout << (char)event.key.keysym.sym;							//uncomment for build
+				if (event.key.keysym.sym == 32) {
+					backSpace(10, renderer, x, y);
+					pos++;
+					x += 10;														//FIX THIS
+					widths.push_back(10);
 				}
+				std::cout << event.key.keysym.sym << std::endl;
+				std::cout << "widths vector size: " << widths.size() << std::endl;	//debugging information vvv (comment for build)
+				std::cout << "widths: ";
+				for (int i = 0; i < widths.size(); i++) {
+					std::cout << widths.at(i) << ", ";
+				}
+				std::cout << std::endl;
+				std::cout << "position: " << pos << std::endl;
+				//if (event.key.keysym.sym != 8) {
+				//	std::cout << (char)event.key.keysym.sym;							//uncomment for build
+				//}
 			}
 		}
 	}
